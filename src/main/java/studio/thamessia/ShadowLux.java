@@ -1,17 +1,19 @@
 package studio.thamessia;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ShadowLux extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-
+        System.out.println("WARNING: THIS IS ONLY FOR DEVELOPERS' USE.");
+        System.out.println("[ShadowLux] Plugin enabled!");
+        Bukkit.getPluginManager().registerEvents(new PacketSniffer(), this);
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        System.out.println("[ShadowLux] Plugin disabled!");
     }
 }
