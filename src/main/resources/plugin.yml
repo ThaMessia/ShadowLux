@@ -1,0 +1,5 @@
+name: ShadowLux
+version: '${project.version}'
+main: studio.thamessia.ShadowLux
+authors: [ ThaMessia ]
+description: Packet sniffer for Minecraft
