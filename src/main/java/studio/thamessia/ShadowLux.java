@@ -16,8 +16,8 @@ public final class ShadowLux extends JavaPlugin {
         configuration.options().copyDefaults(true);
 
         saveConfig();
-        System.out.println(ChatColor.RED + "WARNING: " + ChatColor.DARK_RED + "THIS IS ONLY FOR DEVELOPERS' USE.");
-        System.out.println(ChatColor.LIGHT_PURPLE + "[ShadowLux]"+ ChatColor.GREEN + "Plugin enabled!");
+        System.out.println("\\033[31m" + "WARNING: " + "THIS IS ONLY FOR DEVELOPERS' USE.");
+        System.out.println("\\033[36m" + "[ShadowLux]" + "\\033[32m" + " Plugin enabled!");
 
         if (!configuration.getBoolean("ShadowLux")) return;
         Bukkit.getPluginManager().registerEvents(new PacketSniffer(), this);
