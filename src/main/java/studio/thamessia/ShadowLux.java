@@ -11,12 +11,17 @@ public final class ShadowLux extends JavaPlugin {
     public void onEnable() {
         configuration = this.getConfig();
 
+        configuration.addDefault("ShadowLux", true);
+        configuration.options().copyDefaults(true);
+
+        saveConfig();
         System.out.println("WARNING: THIS IS ONLY FOR DEVELOPERS' USE.");
         System.out.println("[ShadowLux] Plugin enabled!");
 
         if (!configuration.getBoolean("ShadowLux")) return;
-
         Bukkit.getPluginManager().registerEvents(new PacketSniffer(), this);
+
+        this.saveDefaultConfig();
     }
 
     @Override
