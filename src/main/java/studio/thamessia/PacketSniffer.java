@@ -2,6 +2,7 @@ package studio.thamessia;
 
 import io.netty.channel.*;
 import net.md_5.bungee.api.ChatColor;
+import net.minecraft.server.v1_12_R1.PacketPlayOutKeepAlive;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -40,7 +41,7 @@ public class PacketSniffer implements Listener {
 
             @Override
             public void write(ChannelHandlerContext channelHandlerContext, Object packet, ChannelPromise channelPromise) throws Exception {
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE +  "[ShadowLux] " + ChatColor.AQUA + "Packet response: " + ChatColor.GREEN + packet.toString());
+                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE +  "[ShadowLux] " + ChatColor.AQUA + "Server response: " + ChatColor.GREEN + packet.toString());
                 super.write(channelHandlerContext, packet, channelPromise);
             }
 
