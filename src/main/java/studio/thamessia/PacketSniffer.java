@@ -14,12 +14,12 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class PacketSniffer implements Listener {
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event){
+    public void onJoin(PlayerJoinEvent event) {
         addPlayer(event.getPlayer());
     }
 
     @EventHandler
-    public void onLeave(PlayerQuitEvent event){
+    public void onLeave(PlayerQuitEvent event) {
         removePlayer(event.getPlayer());
     }
     private void removePlayer(Player player) {
