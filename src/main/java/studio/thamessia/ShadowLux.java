@@ -15,12 +15,18 @@ public final class ShadowLux extends JavaPlugin {
         configuration.addDefault("ShadowLux", true);
         configuration.options().copyDefaults(true);
 
+        configuration.addDefault("AntiCheat", true);
+        configuration.options().copyDefaults(true);
+
         saveConfig();
         System.out.println("WARNING: " + "THIS IS ONLY FOR DEVELOPERS' USE.");
         System.out.println("[ShadowLux]" + " Plugin enabled!");
 
         if (!configuration.getBoolean("ShadowLux")) return;
         Bukkit.getPluginManager().registerEvents(new PacketSniffer(), this);
+
+        if (!configuration.getBoolean("AntiCheat")) return;
+        Bukkit.getPluginManager().registerEvents(new AntiCheat(), this);
 
         this.saveDefaultConfig();
     }

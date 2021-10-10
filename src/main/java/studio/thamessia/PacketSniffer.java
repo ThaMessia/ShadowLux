@@ -32,7 +32,6 @@ public class PacketSniffer implements Listener {
 
     private void addPlayer(Player player) {
         ChannelDuplexHandler channelDuplexHandler = new ChannelDuplexHandler() {
-
             @Override
             public void channelRead(ChannelHandlerContext channelHandlerContext, Object packet) throws Exception {
                 Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE + "[ShadowLux] " + ChatColor.YELLOW + "Sniffed packet: " + ChatColor.RED + packet.toString());
@@ -44,8 +43,6 @@ public class PacketSniffer implements Listener {
                 Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE +  "[ShadowLux] " + ChatColor.AQUA + "Server response: " + ChatColor.GREEN + packet.toString());
                 super.write(channelHandlerContext, packet, channelPromise);
             }
-
-
         };
 
         //important to understand packets and get player's native mc version
