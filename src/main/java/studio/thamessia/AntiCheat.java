@@ -1,12 +1,11 @@
 package studio.thamessia;
 
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelDuplexHandler;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelPromise;
-import net.md_5.bungee.api.ChatColor;
+import io.netty.channel.*;
 import net.minecraft.server.v1_12_R1.PacketPlayInFlying;
+import net.minecraft.server.v1_12_R1.PacketPlayOutBed;
+import net.minecraft.server.v1_12_R1.PacketPlayOutKeepAlive;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -35,16 +34,16 @@ public class AntiCheat implements Listener {
 
             @Override
             public void write(ChannelHandlerContext channelHandlerContext, Object packet, ChannelPromise channelPromise) throws Exception {
-                if (!(packet instanceof PacketPlayInFlying)) return;
-                if (player.hasPermission("fly.use")) return;
-
-                player.sendMessage("Don't cheat!");
-                player.setAllowFlight(false);
+                if (packet instanceof PacketPlayOutBed) return;
+                if (packet instanceof PacketPlayOutKeepAlive) player.kickPlayer("Unable to live.");
 
                 super.write(channelHandlerContext, packet, channelPromise);
             }
         };
+        ChannelPipeline pipeline = ((CraftPlayer) player).getHandle().playerConnection.networkManager.channel.pipeline();
+        pipeline.addBefore("packet_handler", player.getName(), channelDuplexHandler);
     }
+
 
     private void removePlayer(Player player) {
         Channel channel = ((CraftPlayer) player).getHandle().playerConnection.networkManager.channel;
@@ -53,4 +52,5 @@ public class AntiCheat implements Listener {
             return null;
         });
     }
+
 }
